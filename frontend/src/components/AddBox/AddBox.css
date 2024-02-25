@@ -1,0 +1,19 @@
+.item-input {
+    border-radius: 8px;
+    width: 20rem;
+}
+
+.input-wrap {
+    margin-top: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
