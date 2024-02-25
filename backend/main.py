@@ -29,7 +29,8 @@ app.add_middleware(
 
 
 
-groceries = []
+groceries = [GroceryItem(id=500, name="Bread", brand="Hy-Vee", amount=1)]
+
 
 
 
@@ -66,6 +67,12 @@ async def delete_grocery_item_by_id(id: int) -> GroceryItem:
             return item
     else:
         return HTTPException(404, f"Item with id of {id} not found")
+    
+    
+@app.delete("/groceries")
+async def delete_all_items():
+    
+    groceries.clear()
     
     
 @app.put("/groceries/{id}")

@@ -20,8 +20,9 @@ useEffect(() => {
 
 async function getGroceries() {
   let api = await fetch("http://127.0.0.1:8000/groceries");
-  console.log(api)
+  
   let apijson = await api.json();
+  console.log(apijson)
   setGroceries(apijson);
 }
 

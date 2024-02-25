@@ -17,3 +17,8 @@ form {
     display: flex;
     flex-direction: column;
 }
+
+.action-container {
+    display: flex;
+    gap: 20px;
+}

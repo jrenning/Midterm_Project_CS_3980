@@ -9,6 +9,9 @@ type ItemProps = {
 };
 
 function Item({ name, brand, amount, id }: ItemProps) {
+
+
+    console.log(id)
   async function handleEdit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const target = e.target as typeof e.target & {
@@ -28,6 +31,8 @@ function Item({ name, brand, amount, id }: ItemProps) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
+
+    window.location.reload();
   }
 
   async function handleDelete() {
@@ -35,10 +40,12 @@ function Item({ name, brand, amount, id }: ItemProps) {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
+
+    window.location.reload()
   }
 
   return (
-    <div className="item-container">
+    <div className="paper item-container">
       <div className="item-toprow">
         <div className="item-name">{name}</div>
         <div className="item-amount-container">
@@ -48,14 +55,14 @@ function Item({ name, brand, amount, id }: ItemProps) {
       </div>
 
       <div className="item-botrow">
-        <div className="item-brand badge rounded-pill text-bg-success">
+        <div className="item-brand badge rounded-pill text-bg-info">
           {brand}
         </div>
         <div className="item-actions">
           <button
             className="badge rounded-pill text-bg-warning"
             data-bs-toggle="modal"
-            data-bs-target="#editModal"
+            data-bs-target={`#editModal${id}`}
           >
             edit
           </button>
@@ -70,7 +77,7 @@ function Item({ name, brand, amount, id }: ItemProps) {
 
       <div
         className="modal fade"
-        id="editModal"
+        id={`editModal${id}`}
         tabIndex={-1}
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -79,7 +86,7 @@ function Item({ name, brand, amount, id }: ItemProps) {
           <div className="modal-content content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Create an Item
+                Update Item
               </h1>
 
               <button

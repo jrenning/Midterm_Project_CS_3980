@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 30rem;
     border-radius: 10px;
-    background-color: lightgray;
+    background-color: whitesmoke;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
     justify-content: center;
     padding: 10px;
@@ -40,7 +40,7 @@
 
 .item-amount {
     border-radius: 9999px;
-    background-color: lightgreen;
+    background-color: lightblue;
     padding: 0px 20px 0px 20px;
     font-size: medium;
     display: flex;
@@ -58,4 +58,5 @@
     gap: 10px;
     font-size: large;
 }
+
 
