@@ -11,7 +11,6 @@ type ItemProps = {
 function Item({ name, brand, amount, id }: ItemProps) {
 
 
-    console.log(id)
   async function handleEdit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const target = e.target as typeof e.target & {
@@ -45,7 +44,7 @@ function Item({ name, brand, amount, id }: ItemProps) {
   }
 
   return (
-    <div className="paper item-container">
+    <div className="item-container">
       <div className="item-toprow">
         <div className="item-name">{name}</div>
         <div className="item-amount-container">
