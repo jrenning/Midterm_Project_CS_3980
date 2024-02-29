@@ -24,6 +24,14 @@ async def get_groceries()-> list[GroceryItem]:
     
     return groceries
 
+@grocery_router.get("/groceries/{id}")
+async def get_grocery_item_by_id(id: Annotated[int, Path("This is the id of the item to get")]) -> GroceryItem:
+    for item in groceries:
+        if item.id == id:
+            return item
+    else:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, f"Grocery item with id = {id} not found")
+
 
 @grocery_router.post("/groceries", status_code=status.HTTP_201_CREATED)
 async def add_grocery_item(item: GroceryRequest) -> GroceryItem:
