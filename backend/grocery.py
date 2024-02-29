@@ -25,7 +25,7 @@ async def get_groceries()-> list[GroceryItem]:
     return groceries
 
 @grocery_router.get("/groceries/{id}")
-async def get_grocery_item_by_id(id: Annotated[int, Path("This is the id of the item to get")]) -> GroceryItem:
+async def get_grocery_item_by_id(id: Annotated[int, Path(title="This is the id of the item to get")]) -> GroceryItem:
     for item in groceries:
         if item.id == id:
             return item
