@@ -1,12 +1,24 @@
+from enum import Enum
+from typing import Optional
 from pydantic import BaseModel
 
-class GroceryItem(BaseModel):
+
+class TypeEnum(str, Enum):
+    TV = "TV"
+    Movie = "Movie"
+    Book = "Book"
+    Video_Game = "Video Game"
+    Other = "Other"
+
+class Recommendation(BaseModel):
     id: int
     name: str
-    brand: str
-    amount: int
+    type: TypeEnum
+    link: str
+    description: Optional[str] = None
     
-class GroceryRequest(BaseModel):
+class RecommendationRequest(BaseModel):
     name: str
-    brand: str
-    amount: int
+    type: TypeEnum
+    link: str
+    description: Optional[str] = None

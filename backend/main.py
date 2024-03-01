@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
-from grocery import grocery_router
+from backend.recommend import rec_router
 
 
 
@@ -24,7 +24,7 @@ app.add_middleware(
 )
 
 
-app.include_router(grocery_router)
+app.include_router(rec_router)
 
 @app.get("/")
 async def welcome():
