@@ -14,7 +14,7 @@ class Recommendation(BaseModel):
     id: int
     name: str
     type: TypeEnum
-    link: str
+    link: Optional[str] = None
     description: Optional[str] = None
     
 class RecommendationRequest(BaseModel):
