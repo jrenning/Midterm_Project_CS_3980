@@ -3,27 +3,36 @@ import Item from '../Item/Item'
 import "./Listbox.css"
 import { useEffect, useState } from "react";
 
-export type Item = {
-    name: string
-    brand: string
-    amount: number
-    id: number
+export enum Type {
+  TV = "TV",
+  Movie = "Movie",
+  Book = "Book",
+  Video_Game = "Video Game",
+  Other = "Other",
 }
+
+
+type Recommendation = {
+  name: string;
+  id: number;
+  type: Type;
+  link: string;
+  description?: string;
+};
 
 
 function Listbox() {
 
-const [groceries, setGroceries] = useState<Item[]>([]);
+const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
 useEffect(() => {
   getGroceries();
 }, []);
 
 async function getGroceries() {
-  let api = await fetch("http://127.0.0.1:8000/groceries");
+  let api = await fetch("http://127.0.0.1:8000/recs");
   
   let apijson = await api.json();
-  console.log(apijson)
-  setGroceries(apijson);
+  setRecommendations(apijson);
 }
 
 
@@ -31,7 +40,7 @@ async function getGroceries() {
 
   return (
     <div className="listbox">
-        {groceries.map((item)=> (
+        {recommendations.map((item)=> (
             <Item {...item} key={item.name}/>
         ))}
     </div>

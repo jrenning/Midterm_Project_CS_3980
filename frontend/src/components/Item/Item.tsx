@@ -1,31 +1,35 @@
 import React, { FormEvent } from "react";
 import "./Item.css";
+import { Type } from "../Listbox/Listbox";
+
+
 
 type ItemProps = {
   name: string;
-  brand: string;
-  amount: number;
   id: number;
+  type: Type;
+  link: string;
+  description?: string;
 };
 
-function Item({ name, brand, amount, id }: ItemProps) {
-
-
+function Item({ name, type, link, description, id }: ItemProps) {
   async function handleEdit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const target = e.target as typeof e.target & {
       name: { value: string };
-      brand: { value: string };
-      amount: { value: number };
+      type: { value: Type };
+      link: { value: string };
+      description: { value: string };
     };
 
     const formData = {
       name: target.name.value,
-      brand: target.brand.value,
-      amount: Number(target.amount.value),
+      brand: target.type.value,
+      amount: target.link.value,
+      description: target.description.value,
     };
 
-    await fetch(`http://localhost:8000/groceries/${id}`, {
+    await fetch(`http://localhost:8000/recs/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -35,28 +39,25 @@ function Item({ name, brand, amount, id }: ItemProps) {
   }
 
   async function handleDelete() {
-    await fetch(`http://localhost:8000/groceries/${id}`, {
+    await fetch(`http://localhost:8000/recs/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
 
-    window.location.reload()
+    window.location.reload();
   }
 
   return (
     <div className="item-container">
       <div className="item-toprow">
         <div className="item-name">{name}</div>
-        <div className="item-amount-container">
-          <div>X</div>
-          <div className="item-amount">{amount}</div>
+        <div className="item-link-container">
+          {link && <a className="item-link" target="_blank" href={link}>Visit</a>}
         </div>
       </div>
 
       <div className="item-botrow">
-        <div className="item-brand badge rounded-pill text-bg-info">
-          {brand}
-        </div>
+        <div className="item-type badge rounded-pill text-bg-info">{type}</div>
         <div className="item-actions">
           <button
             className="badge rounded-pill text-bg-warning"
@@ -85,7 +86,7 @@ function Item({ name, brand, amount, id }: ItemProps) {
           <div className="modal-content content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Update Item
+                Update Recommendation
               </h1>
 
               <button
@@ -104,23 +105,30 @@ function Item({ name, brand, amount, id }: ItemProps) {
                   id="name"
                   defaultValue={name}
                 />
-                <label className="form-label">Brand</label>
+                <label className="form-label">Type</label>
+                <select className="form-select">
+                  {Object.values(Type).map((type) => (
+                    <option key={type}>{type}</option>
+                  ))}
+                </select>
+                <label className="form-label">Description</label>
                 <input
-                  required={true}
+                  required={false}
                   className="form-control"
-                  id="brand"
-                  defaultValue={brand}
+                  id="link"
+                  defaultValue={description}
                 />
-                <label className="form-label">Amount</label>
+                <label className="form-label">Link</label>
                 <input
-                  type="number"
-                  required={true}
+                  required={false}
                   className="form-control"
-                  id="amount"
-                  defaultValue={amount}
+                  id="link"
+                  defaultValue={link}
                 />
 
-                <button className="btn btn-primary">Update Item</button>
+                <button className="btn btn-primary">
+                  Update Recommendation
+                </button>
               </form>
             </div>
           </div>

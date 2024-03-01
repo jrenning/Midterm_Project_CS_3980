@@ -33,13 +33,13 @@
     font-weight: bold;
 }
 
-.item-brand {
+.item-type {
     font-size: medium;
     
 }
 
-.item-amount {
-    border-radius: 9999px;
+.item-link {
+    border-radius: 12px;
     background-color: lightblue;
     padding: 0px 20px 0px 20px;
     font-size: medium;
@@ -50,7 +50,7 @@
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-.item-amount-container {
+.item-link-container {
     display: flex;
     justify-content: center;
     align-items: center;

@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
-    <Header name="Grocery List"/>
+    <Header name="Recommendation List"/>
 
     <AddBox />
 
