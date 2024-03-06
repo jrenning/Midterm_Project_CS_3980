@@ -7,7 +7,7 @@ from fastapi import HTTPException
 from model import Recommendation, RecommendationRequest, TypeEnum
 from fastapi import HTTPException, status
 
-rec_router = APIRouter(tags=["Grocery"])
+rec_router = APIRouter(tags=["Recommendation"])
 
 max_id = 0
 recommendations = [

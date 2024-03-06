@@ -25,13 +25,14 @@ function Listbox() {
 
 const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
 useEffect(() => {
-  getGroceries();
+  getRecommendations();
 }, []);
 
-async function getGroceries() {
+async function getRecommendations() {
   let api = await fetch("http://127.0.0.1:8000/recs");
-  
+  console.log(api)
   let apijson = await api.json();
+  console.log(apijson)
   setRecommendations(apijson);
 }
 

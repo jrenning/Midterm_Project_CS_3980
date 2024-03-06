@@ -2,8 +2,6 @@ import React, { FormEvent } from "react";
 import "./Item.css";
 import { Type } from "../Listbox/Listbox";
 
-
-
 type ItemProps = {
   name: string;
   id: number;
@@ -24,10 +22,12 @@ function Item({ name, type, link, description, id }: ItemProps) {
 
     const formData = {
       name: target.name.value,
-      brand: target.type.value,
-      amount: target.link.value,
+      type: target.type.value,
+      link: target.link.value,
       description: target.description.value,
     };
+
+    console.log(formData);
 
     await fetch(`http://localhost:8000/recs/${id}`, {
       method: "PUT",
@@ -52,7 +52,11 @@ function Item({ name, type, link, description, id }: ItemProps) {
       <div className="item-toprow">
         <div className="item-name">{name}</div>
         <div className="item-link-container">
-          {link && <a className="item-link" target="_blank" href={link}>Visit</a>}
+          {link && (
+            <a className="item-link" target="_blank" href={link}>
+              Visit
+            </a>
+          )}
         </div>
       </div>
 
@@ -106,7 +110,7 @@ function Item({ name, type, link, description, id }: ItemProps) {
                   defaultValue={name}
                 />
                 <label className="form-label">Type</label>
-                <select className="form-select">
+                <select className="form-select" id="type">
                   {Object.values(Type).map((type) => (
                     <option key={type}>{type}</option>
                   ))}
@@ -115,7 +119,7 @@ function Item({ name, type, link, description, id }: ItemProps) {
                 <input
                   required={false}
                   className="form-control"
-                  id="link"
+                  id="description"
                   defaultValue={description}
                 />
                 <label className="form-label">Link</label>
