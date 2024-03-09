@@ -1,6 +1,6 @@
 # Project
 
-This project is a simple recommendation list application that contains data about the name and type. It also optionally contains a description and link.
+This project is a simple recommendation list application that contains data about the name and type of media. It also optionally contains a description and link.
 
 This project contains two main sections those being the frontend and the backend.
 
@@ -42,6 +42,17 @@ The frontend of this project is a React app. It calls the endpoints provided by 
 There's a simple shell script called start.sh which just starts both the Python backend and node frontend. 
 
 *Note that this assumes that your env is already active or uvicorn is installed in your local environment. Additionly, this does not show output for the backend on the shell so don't use it for debugging*
+
+
+## Future Goals
+
+- Add search feature to the recommendation list
+- Add sorting ability, by name, by type, by recency 
+- Add friend system where you can add people and they can send you recommendations without you having to type them in 
+- Add better links to movies and tv shows through an API
+- Add ability to attach files to the recommendations?
+
+
 
 ### Sources
 
